@@ -9,7 +9,7 @@ dependencies:
     specifier: ^4.0.8
     version: 4.0.8
   pdfjs-dist:
-    specifier: 2.16.105
+    specifier: ^2.16.105
     version: 2.16.105
   react:
     specifier: '>=18.0.0'
