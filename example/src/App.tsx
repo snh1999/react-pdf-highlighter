@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   PdfLoader,
@@ -50,9 +50,14 @@ export function PDFViewer({ url }: { url: string }) {
   const resetHighlights = () => setHighlights([]);
 
   let scrollViewerTo = (_: any) => { }
-
+  useEffect(() => {
+      window.addEventListener(
+        "hashchange",
+        scrollToHighlightFromHash,
+        false
+      );
+  }, []);
   const getHighlightById = (id: string) => highlights.find((highlight) => highlight.id === id);
-
 
   const scrollToHighlightFromHash = () => {
     const highlight = getHighlightById(parseIdFromHash());
@@ -180,4 +185,5 @@ export function PDFViewer({ url }: { url: string }) {
 function App(){
   return <PDFViewer url={initialUrl}/>
 }
+
 export default App;
