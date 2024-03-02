@@ -4,7 +4,6 @@ import type { IHighlight } from "./react-pdf-highlighter";
 interface Props {
   highlights: Array<IHighlight>;
   resetHighlights: () => void;
-  toggleDocument: () => void;
 }
 
 const updateHash = (highlight: IHighlight) => {
@@ -15,7 +14,6 @@ declare const APP_VERSION: string;
 
 export function Sidebar({
   highlights,
-  toggleDocument,
   resetHighlights,
 }: Props) {
   return (
@@ -25,16 +23,9 @@ export function Sidebar({
           react-pdf-highlighter {APP_VERSION}
         </h2>
 
-        <p style={{ fontSize: "0.7rem" }}>
-          <a href="https://github.com/agentcooper/react-pdf-highlighter">
-            Open in GitHub
-          </a>
-        </p>
-
         <p>
           <small>
-            To create area highlight hold ⌥ Option key (Alt), then click and
-            drag.
+            To create area highlight hold ⌥ Option key (Alt), then click and drag.
           </small>
         </p>
       </div>
@@ -70,9 +61,7 @@ export function Sidebar({
           </li>
         ))}
       </ul>
-      <div style={{ padding: "1rem" }}>
-        <button onClick={toggleDocument}>Toggle PDF document</button>
-      </div>
+      
       {highlights.length > 0 ? (
         <div style={{ padding: "1rem" }}>
           <button onClick={resetHighlights}>Reset highlights</button>
