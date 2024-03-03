@@ -337,9 +337,9 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
 
     const { boundingRect, pageNumber } = tipPosition;
     const page = {
-      node: this.viewer.getPageView((boundingRect.pageNumber || pageNumber) - 1)
+      node: this.viewer.getPageView((boundingRect.pageNumber ?? pageNumber) - 1)
         .div,
-      pageNumber: boundingRect.pageNumber || pageNumber,
+      pageNumber: boundingRect.pageNumber ?? pageNumber,
     };
 
     const pageBoundingClientRect = page.node.getBoundingClientRect();
@@ -640,7 +640,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber++) {
       const highlightRoot = this.highlightRoots[pageNumber];
       /** Need to check if container is still attached to the DOM as PDF.js can unload pages. */
-      if (highlightRoot && highlightRoot.container.isConnected) {
+      if (highlightRoot?.container.isConnected) {
         this.renderHighlightLayer(highlightRoot.reactRoot, pageNumber);
       } else {
         const highlightLayer = this.findOrCreateHighlightLayer(pageNumber);

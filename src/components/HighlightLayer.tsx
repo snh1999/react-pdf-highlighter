@@ -80,7 +80,7 @@ export function HighlightLayer<T_HT extends IHighlight>({
           hideTipAndSelection,
           (rect) => {
             const viewport = viewer.getPageView(
-              (rect.pageNumber || parseInt(pageNumber)) - 1
+              (rect.pageNumber ?? parseInt(pageNumber)) - 1
             ).viewport;
 
             return viewportToScaled(rect, viewport);

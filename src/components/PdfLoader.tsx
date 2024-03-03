@@ -55,7 +55,7 @@ export class PdfLoader extends Component<Props, State> {
   }
 
   load() {
-    const { ownerDocument = document } = this.documentRef.current || {};
+    const { ownerDocument = document } = this.documentRef.current ?? {};
     const { url, cMapUrl, cMapPacked } = this.props;
     const { pdfDocument: discardedDocument } = this.state;
     this.setState({ pdfDocument: null, error: null });
@@ -66,7 +66,7 @@ export class PdfLoader extends Component<Props, State> {
     ).toString();
 
     Promise.resolve()
-      .then(() => discardedDocument && discardedDocument.destroy())
+      .then(() => discardedDocument?.destroy())
       .then(() => {
         if (!url) {
           return;

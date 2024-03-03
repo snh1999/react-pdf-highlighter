@@ -6,7 +6,7 @@ const getAreaAsPNG = (canvas: HTMLCanvasElement, position: LTWHP): string => {
 
   const doc = canvas ? canvas.ownerDocument : null;
   // @TODO: cache this?
-  const newCanvas = doc && doc.createElement("canvas");
+  const newCanvas = doc?.createElement("canvas");
 
   if (!newCanvas || !isHTMLCanvasElement(newCanvas)) {
     return "";

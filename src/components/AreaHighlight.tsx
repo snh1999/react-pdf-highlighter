@@ -40,7 +40,7 @@ export class AreaHighlight extends Component<Props> {
               left: position.x,
               width: ref.offsetWidth,
               height: ref.offsetHeight,
-              pageNumber: getPageFromElement(ref)?.number || -1,
+              pageNumber: getPageFromElement(ref)?.number ?? -1,
             };
 
             onChange(boundingRect);
