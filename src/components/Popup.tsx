@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, ReactElement } from "react";
 
 import MouseMonitor from "./MouseMonitor";
 
 interface Props {
-  onMouseOver: (content: JSX.Element) => void;
-  popupContent: JSX.Element;
+  onMouseOver: (content: ReactElement) => void;
+  popupContent: ReactElement;
   onMouseOut: () => void;
-  children: JSX.Element;
+  children: ReactElement;
 }
 
 interface State {

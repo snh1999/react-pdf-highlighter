@@ -1,5 +1,5 @@
 import { viewportToScaled } from "../lib/coordinates";
-import React from "react";
+import React, { ReactElement } from "react";
 import {
   IHighlight,
   LTWH,
@@ -16,21 +16,24 @@ interface HighlightLayerProps<T_HT> {
   highlightTransform: (
     highlight: any,
     index: number,
-    setTip: (highlight: any, callback: (highlight: any) => JSX.Element) => void,
+    setTip: (
+      highlight: any,
+      callback: (highlight: any) => ReactElement
+    ) => void,
     hideTip: () => void,
     viewportToScaled: (rect: LTWHP) => Scaled,
     screenshot: (position: LTWH) => string,
     isScrolledTo: boolean
-  ) => JSX.Element;
+  ) => ReactElement;
   tip: {
     highlight: any;
-    callback: (highlight: any) => JSX.Element;
+    callback: (highlight: any) => ReactElement;
   } | null;
   scaledPositionToViewport: (scaledPosition: ScaledPosition) => Position;
   hideTipAndSelection: () => void;
   viewer: any;
   screenshot: (position: LTWH, pageNumber: number) => string;
-  showTip: (highlight: any, content: JSX.Element) => void;
+  showTip: (highlight: any, content: ReactElement) => void;
   setState: (state: any) => void;
 }
 

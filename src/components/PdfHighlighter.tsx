@@ -16,7 +16,12 @@ import type {
   Scaled,
   ScaledPosition,
 } from "../types";
-import React, { PointerEventHandler, PureComponent, RefObject } from "react";
+import React, {
+  PointerEventHandler,
+  PureComponent,
+  ReactElement,
+  RefObject,
+} from "react";
 import {
   asElement,
   findOrCreateContainerLayer,
@@ -47,10 +52,10 @@ interface State<T_HT> {
   range: Range | null;
   tip: {
     highlight: T_ViewportHighlight<T_HT>;
-    callback: (highlight: T_ViewportHighlight<T_HT>) => JSX.Element;
+    callback: (highlight: T_ViewportHighlight<T_HT>) => ReactElement;
   } | null;
   tipPosition: Position | null;
-  tipChildren: JSX.Element | null;
+  tipChildren: ReactElement | null;
   isAreaSelectionInProgress: boolean;
   scrolledToHighlightId: string;
 }
@@ -61,13 +66,13 @@ interface Props<T_HT> {
     index: number,
     setTip: (
       highlight: T_ViewportHighlight<T_HT>,
-      callback: (highlight: T_ViewportHighlight<T_HT>) => JSX.Element
+      callback: (highlight: T_ViewportHighlight<T_HT>) => ReactElement
     ) => void,
     hideTip: () => void,
     viewportToScaled: (rect: LTWHP) => Scaled,
     screenshot: (position: LTWH) => string,
     isScrolledTo: boolean
-  ) => JSX.Element;
+  ) => ReactElement;
   highlights: Array<T_HT>;
   onScrollChange: () => void;
   scrollRef: (scrollTo: (highlight: T_HT) => void) => void;
@@ -78,7 +83,7 @@ interface Props<T_HT> {
     content: { text?: string; image?: string },
     hideTipAndSelection: () => void,
     transformSelection: () => void
-  ) => JSX.Element | null;
+  ) => ReactElement | null;
   enableAreaSelection: (event: MouseEvent) => boolean;
 }
 
@@ -258,7 +263,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     return groupedHighlights;
   }
 
-  showTip(highlight: T_ViewportHighlight<T_HT>, content: JSX.Element) {
+  showTip(highlight: T_ViewportHighlight<T_HT>, content: ReactElement) {
     const { isCollapsed, ghostHighlight, isAreaSelectionInProgress } =
       this.state;
 
@@ -319,7 +324,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     );
   };
 
-  setTip(position: Position, inner: JSX.Element | null) {
+  setTip(position: Position, inner: ReactElement | null) {
     this.setState({
       tipPosition: position,
       tipChildren: inner,

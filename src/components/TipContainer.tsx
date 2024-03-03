@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ReactElement } from "react";
 
 import type { LTWHP } from "../types";
 
@@ -8,7 +8,7 @@ interface State {
 }
 
 interface Props {
-  children: JSX.Element | null;
+  children: ReactElement | null;
   style: { top: number; left: number; bottom: number };
   scrollTop: number;
   pageBoundingRect: LTWHP;
